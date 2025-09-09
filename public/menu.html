@@ -1,16 +1,60 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menú del Restaurante</title>
+  <!-- Added Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/menustyle.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Menú del Restaurante</h1>
-    <div id="menuContainer" class="menu-grid"></div>
+ 
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#"> Atlantic</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav ms-auto">
+          <button class="btn btn-outline-light me-2" onclick="location.href='clientes.html'">
+            Registrar Cliente
+          </button>
+          <button class="btn btn-outline-light me-2" onclick="location.href='reserva.html'">
+            Reserva
+          </button>
+          <button class="btn btn-outline-light me-2" onclick="location.href='pedidos.html'">
+            Pedido
+          </button>
+          <button class="btn btn-danger" onclick="cerrarSesion()">
+            Cerrar Sesión
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Applied Bootstrap container and typography classes -->
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center mb-4 display-4 text-primary">Menú del Restaurante</h1>
+        <div id="menuContainer" class="row g-3"></div>
+      </div>
+    </div>
   </div>
 
+  <!-- Added Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function cerrarSesion() {
+      // Aquí puedes limpiar localStorage/sessionStorage si guardas datos de sesión
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.href = 'login.html';
+    }
+  </script>
   <script src="/js/menu.js"></script>
 </body>
 </html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Administrador</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f5f5;
+    }
+    header {
+      background: #222;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h2 { margin: 0; }
+    nav button {
+      margin-left: 10px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #555;
+      color: white;
+    }
+    nav button:hover { background: #777; }
+
+    .container {
+      padding: 20px;
+    }
+    .section {
+      background: white;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    h3 { margin-top: 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th { background: #f0f0f0; }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Panel Administrador</h2>
+    <nav>
+      <button onclick="location.href='menu.html'">Menú</button>
+      <button onclick="cerrarSesion()">Cerrar Sesión</button>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Hacer Pedido -->
+    <div class="section">
+      <h3>Hacer Pedido</h3>
+      <form id="formPedido">
+        <label>Cliente:</label>
+        <select id="clienteSelect"></select><br><br>
+        <label>Mesa:</label>
+        <input type="text" id="mesa" required><br><br>
+        <label>Observaciones:</label>
+        <input type="text" id="observaciones"><br><br>
+        <button type="submit">Registrar Pedido</button>
+      </form>
+    </div>
+
+    <!-- Ver Pedidos -->
+    <div class="section">
+      <h3>Pedidos Activos</h3>
+      <table id="tablaPedidos">
+        <thead>
+          <tr><th>ID</th><th>Cliente</th><th>Mesa</th><th>Observaciones</th><th>Acciones</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Historial de Compras -->
+    <div class="section">
+      <h3>Historial de Compras</h3>
+      <table id="tablaHistorial">
+        <thead>
+          <tr><th>ID Pedido</th><th>Cliente</th><th>Fecha</th><th>Total</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Facturas -->
+    <div class="section">
+      <h3>Facturación</h3>
+      <form id="formFactura">
+        <label>ID Pedido:</label>
+        <input type="number" id="idPedidoFactura" required>
+        <button type="submit">Generar Factura</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    async function cargarClientes() {
+      const res = await fetch('/clientes');
+      const clientes = await res.json();
+      const select = document.getElementById('clienteSelect');
+      select.innerHTML = clientes.map(c => `<option value="${c.id_cliente}">${c.nombre}</option>`).join('');
+    }
+
+    async function cargarPedidos() {
+      const res = await fetch('/pedidos');
+      const pedidos = await res.json();
+      const tbody = document.querySelector('#tablaPedidos tbody');
+      tbody.innerHTML = '';
+      pedidos.forEach(p => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${p.id_pedido}</td>
+            <td>${p.cliente || 'N/A'}</td>
+            <td>${p.mesa}</td>
+            <td>${p.observaciones}</td>
+            <td><button onclick="eliminarPedido(${p.id_pedido})">Eliminar</button></td>
+          </tr>
+        `;
+      });
+    }
+
+    async function cargarHistorial() {
+      const res = await fetch('/pedidos');
+      const pedidos = await res.json();
+      const tbody = document.querySelector('#tablaHistorial tbody');
+      tbody.innerHTML = '';
+      pedidos.forEach(p => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${p.id_pedido}</td>
+            <td>${p.cliente || 'N/A'}</td>
+            <td>${new Date(p.fecha).toLocaleString()}</td>
+            <td> - </td>
+          </tr>
+        `;
+      });
+    }
+
+    // Crear Pedido
+    document.getElementById('formPedido').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const pedido = {
+        id_cliente: document.getElementById('clienteSelect').value,
+        mesa: document.getElementById('mesa').value,
+        observaciones: document.getElementById('observaciones').value,
+        platos: [], bebidas: [], id_usuario: 1 // admin
+      };
+      await fetch('/pedido', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(pedido)
+      });
+      alert('Pedido registrado');
+      cargarPedidos();
+    });
+
+    // Generar Factura
+    document.getElementById('formFactura').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const idPedido = document.getElementById('idPedidoFactura').value;
+      await fetch('/factura', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id_pedido: idPedido })
+      });
+      alert('Factura generada');
+    });
+
+    async function eliminarPedido(id) {
+      if (!confirm("¿Eliminar pedido?")) return;
+      await fetch(`/pedido/${id}`, { method: 'DELETE' });
+      cargarPedidos();
+    }
+
+    function cerrarSesion() {
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.href = 'login.html';
+    }
+
+    // Inicializar
+    cargarClientes();
+    cargarPedidos();
+    cargarHistorial();
+  </script>
+</body>
+</html>

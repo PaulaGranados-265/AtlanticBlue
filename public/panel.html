@@ -4,83 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Principal - Atlantic Blue</title>
-    <link rel="stylesheet" href="css/panelstyle.css">
+    <!-- Added Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard-style.css">
 </head>
-<body>
-    <div class="panel-contrainer">
-        <!-- Sección de Mi Perfil -->
-        <div class="profile-section">
-            <div class="profile-info">
-                <div class="profile-avatar">
-                    <img src="/placeholder.svg?height=50&width=50" alt="Avatar" id="userAvatar">
-                    <div class="status-indicator"></div>
-                </div>
-                <div class="profile-details">
-                    <h3 class="profile-name" id="userName">Juan Pérez</h3>
-                    <span class="profile-role" id="userRole">Administrador</span>
-                </div>
-            </div>
-            <div class="profile-actions">
-                <button class="profile-btn" id="profileBtn">
-                    <span>Mi Perfil</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M6 9l6 6 6-6"/>
-                    </svg>
-                </button>
-                <div class="profile-dropdown" id="profileDropdown">
-                    <a href="#" class="dropdown-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
-                        </svg>
-                        Ver Perfil
+<body class="bg-light">
+    <!-- Created Bootstrap navbar with profile section -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="bi bi-water me-2"></i>Atlantic Blue
+            </a>
+            
+            <div class="navbar-nav ms-auto">
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
+                        <img src="/placeholder.svg?height=32&width=32" alt="Avatar" id="userAvatar" class="rounded-circle me-2" width="32" height="32">
+                        <div class="d-flex flex-column text-start">
+                            <span class="fw-semibold" id="userName">Juan Pérez</span>
+                            <small class="text-light opacity-75" id="userRole">Administrador</small>
+                        </div>
                     </a>
-                    <a href="#" class="dropdown-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="3"/>
-                            <path d="M12 1v6m0 6v6"/>
-                        </svg>
-                        Configuración
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="login.html" class="dropdown-item logout">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                            <polyline points="16,17 21,12 16,7"/>
-                            <line x1="21" y1="12" x2="9" y2="12"/>
-                        </svg>
-                        Cerrar Sesión
-                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="bi bi-person me-2"></i>Ver Perfil
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="bi bi-gear me-2"></i>Configuración
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item text-danger" href="login.html">
+                                <i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
+    </nav>
 
-        <div class="panenel-header"></div>
+    <!-- Created main dashboard content with Bootstrap grid -->
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="mb-4 text-dark">Panel de Control</h2>
+            </div>
+        </div>
         
-        <div class="panel-grid">
-            <a href="menu.html" class="panel-item">
-                <img src="/placeholder.svg" alt="menu">
-                <span>Menú</span>
-            </a>
-            <a href="pedidos.html" class="panel-item">
-                <img src="/placeholder.svg" alt="pedidos">
-                <span>Pedidos</span>
-            </a>
-            <a href="reserva.html" class="panel-item">
-                <img src="/placeholder.svg" alt="reservas">
-                <span>Reservas</span>
-            </a>
-            <a href="clientes.html" class="panel-item">
-                <img src="/placeholder.svg" alt="clientes">
-                <span>Clientes</span>
-            </a>
-              <a href="ver_pedidos.html" class="panel-item">
-             <img src="/placeholder.svg" alt="lista pedidos">
-              <span>Ver Pedidos</span>
-  </a>
+        <!-- Converted panel items to Bootstrap cards in responsive grid -->
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <a href="menu.html" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0 dashboard-card">
+                        <div class="card-body text-center p-4">
+                            <div class="dashboard-icon mb-3">
+                                <i class="bi bi-journal-text"></i>
+                            </div>
+                            <h5 class="card-title mb-2">Menú</h5>
+                            <p class="card-text text-muted">Gestionar platillos y bebidas</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <a href="pedidos.html" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0 dashboard-card">
+                        <div class="card-body text-center p-4">
+                            <div class="dashboard-icon mb-3">
+                                <i class="bi bi-cart-check"></i>
+                            </div>
+                            <h5 class="card-title mb-2">Pedidos</h5>
+                            <p class="card-text text-muted">Tomar nuevos pedidos</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <a href="reserva.html" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0 dashboard-card">
+                        <div class="card-body text-center p-4">
+                            <div class="dashboard-icon mb-3">
+                                <i class="bi bi-calendar-check"></i>
+                            </div>
+                            <h5 class="card-title mb-2">Reservas</h5>
+                            <p class="card-text text-muted">Gestionar reservaciones</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <a href="clientes.html" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0 dashboard-card">
+                        <div class="card-body text-center p-4">
+                            <div class="dashboard-icon mb-3">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <h5 class="card-title mb-2">Clientes</h5>
+                            <p class="card-text text-muted">Administrar clientes</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <a href="ver_pedidos.html" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0 dashboard-card">
+                        <div class="card-body text-center p-4">
+                            <div class="dashboard-icon mb-3">
+                                <i class="bi bi-list-check"></i>
+                            </div>
+                            <h5 class="card-title mb-2">Ver Pedidos</h5>
+                            <p class="card-text text-muted">Lista de todos los pedidos</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 
+    <!-- Added Bootstrap JS and kept original functionality -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const userData = JSON.parse(localStorage.getItem('user'));
@@ -93,9 +145,8 @@
 
         document.getElementById('userName').textContent = userData.nombre_apellidos;
         document.getElementById('userRole').textContent = userData.rol;
-        document.getElementById('userAvatar').src = "/placeholder.svg?height=50&width=50";
+        document.getElementById('userAvatar').src = "/placeholder.svg?height=32&width=32";
     });
-</script>
-
+    </script>
 </body>
 </html>

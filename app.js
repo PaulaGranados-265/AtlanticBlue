@@ -195,9 +195,9 @@ app.get('/menu', (req, res) => {
   });
 });
 
-// Reemplaza tu ruta actual con esta versión mejorada
+
 // Registrar pedido
-// REGISTRAR PEDIDO - VERSIÓN CORREGIDA
+
 app.post('/pedido', (req, res) => {
     const { id_cliente, mesa, observaciones, platos, bebidas, id_usuario } = req.body;
     console.log('Pedido recibido:', req.body); 

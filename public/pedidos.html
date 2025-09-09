@@ -2,53 +2,133 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Nuevo Pedido</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuevo Pedido - Atlantic</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="css/pedidos.css">
 </head>
-<body>
-  <div class="container">
-    <h2>Realizar Pedido</h2>
-    <form id="formPedido">
-      <div>
-        <label for="cliente">Cliente (opcional):</label>
-        <select id="cliente" name="cliente">
-          <option value="">-- Seleccione un cliente --</option>
-          <!-- Aquí se insertan dinámicamente los clientes -->
-        </select>
-      </div>
+<body class="bg-light">
 
-      <div>
-        <label for="mesa">Número de mesa (opcional):</label>
-        <input type="number" id="mesa" name="mesa" min="1" placeholder="Ej. 5">
+  <!-- Improved navbar with better mobile responsiveness -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold fs-4" href="#">
+        <i class="bi bi-shop me-2"></i>Atlantic
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav ms-auto">
+          <button class="btn btn-outline-light btn-sm me-2 mb-2 mb-lg-0" onclick="location.href='clientes.html'">
+            <i class="bi bi-person-plus me-1"></i>Clientes
+          </button>
+          <button class="btn btn-outline-light btn-sm me-2 mb-2 mb-lg-0" onclick="location.href='reserva.html'">
+            <i class="bi bi-calendar-check me-1"></i>Reservas
+          </button>
+          <button class="btn btn-outline-light btn-sm me-2 mb-2 mb-lg-0" onclick="location.href='menu.html'">
+            <i class="bi bi-menu-button-wide me-1"></i>Menú
+          </button>
+          <button class="btn btn-danger btn-sm" onclick="cerrarSesion()">
+            <i class="bi bi-box-arrow-right me-1"></i>Salir
+          </button>
+        </div>
       </div>
+    </div>
+  </nav>
 
-      <!-- Sección de Platos -->
-      <h3>Platos</h3>
-      <div id="platosContainer"></div>
-      <button type="button" id="addPlato" class="add-button">Agregar Plato</button>
-      
-      <!-- Sección de Bebidas -->
-      <h3>Bebidas</h3>
-      <div id="bebidasContainer"></div>
-      <button type="button" id="addBebida" class="add-button">Agregar Bebida</button>
-      
-      <!-- Total -->
-      <div class="total-section">
-        <div class="total-amount">Total: $<span id="totalAmount">0.00</span></div>
+  <!-- Added container with better spacing and mobile-first design -->
+  <div class="container-fluid px-3 py-4">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8">
+        
+        <!-- Added header card for better visual hierarchy -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-body text-center">
+            <h2 class="card-title text-primary mb-0">
+              <i class="bi bi-clipboard-plus me-2"></i>Realizar Pedido
+            </h2>
+          </div>
+        </div>
+
+        <!-- Form wrapped in card with Bootstrap form classes -->
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <form id="formPedido">
+              
+              <!-- Customer and table info in responsive grid -->
+              <div class="row g-3 mb-4">
+                <div class="col-12 col-md-6">
+                  <label for="cliente" class="form-label fw-semibold">
+                    <i class="bi bi-person me-1"></i>Cliente (opcional)
+                  </label>
+                  <select id="cliente" name="cliente" class="form-select">
+                    <option value="">-- Seleccione un cliente --</option>
+                  </select>
+                </div>
+                <div class="col-12 col-md-6">
+                  <label for="mesa" class="form-label fw-semibold">
+                    <i class="bi bi-table me-1"></i>Número de mesa (opcional)
+                  </label>
+                  <input type="number" id="mesa" name="mesa" min="1" placeholder="Ej. 5" class="form-control">
+                </div>
+              </div>
+
+              <!-- Platos section with better mobile layout -->
+              <div class="mb-4">
+                <h4 class="text-primary border-bottom pb-2 mb-3">
+                  <i class="bi bi-dish me-2"></i>Platos
+                </h4>
+                <div id="platosContainer" class="mb-3"></div>
+                <button type="button" id="addPlato" class="btn btn-outline-primary btn-sm">
+                  <i class="bi bi-plus-circle me-1"></i>Agregar Plato
+                </button>
+              </div>
+              
+              <!-- Bebidas section with consistent styling -->
+              <div class="mb-4">
+                <h4 class="text-primary border-bottom pb-2 mb-3">
+                  <i class="bi bi-cup-straw me-2"></i>Bebidas
+                </h4>
+                <div id="bebidasContainer" class="mb-3"></div>
+                <button type="button" id="addBebida" class="btn btn-outline-primary btn-sm">
+                  <i class="bi bi-plus-circle me-1"></i>Agregar Bebida
+                </button>
+              </div>
+              
+              <!-- Total section with prominent display -->
+              <div class="alert alert-info d-flex justify-content-between align-items-center mb-4">
+                <span class="fw-bold fs-5">Total:</span>
+                <span class="fw-bold fs-4 text-primary">$<span id="totalAmount">0.00</span></span>
+              </div>
+              
+              <!-- Observations with better form styling -->
+              <div class="mb-4">
+                <label for="observaciones" class="form-label fw-semibold">
+                  <i class="bi bi-chat-text me-1"></i>Observaciones generales
+                </label>
+                <textarea id="observaciones" name="observaciones" rows="3" 
+                         placeholder="Ej: sin cebolla, muy caliente, para llevar..." 
+                         class="form-control"></textarea>
+              </div>
+              
+              <!-- Submit button with full width on mobile -->
+              <div class="d-grid">
+                <button type="submit" class="btn btn-success btn-lg">
+                  <i class="bi bi-check-circle me-2"></i>Finalizar Pedido
+                </button>
+              </div>
+              
+            </form>
+          </div>
+        </div>
+        
       </div>
-      
-      <hr>
-      
-      <!-- Observaciones generales -->
-      <div class="form-group">
-        <label for="observaciones">Observaciones generales:</label>
-        <textarea id="observaciones" name="observaciones" rows="3" placeholder="Ej: sin cebolla, muy caliente, para llevar..."></textarea>
-      </div>
-      
-      <button type="submit" class="submit-button">Finalizar Pedido</button>
-    </form>
+    </div>
   </div>
   
-  <script src="/js/pedido.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/pedido.js"></script>
 </body>
 </html>
