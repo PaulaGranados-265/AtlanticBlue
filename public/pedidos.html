@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nuevo Pedido</title>
+  <link rel="stylesheet" href="css/pedidos.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Realizar Pedido</h2>
+    <form id="formPedido">
+      <div>
+        <label for="cliente">Cliente (opcional):</label>
+        <select id="cliente" name="cliente">
+          <option value="">-- Seleccione un cliente --</option>
+          <!-- Aquí se insertan dinámicamente los clientes -->
+        </select>
+      </div>
+
+      <div>
+        <label for="mesa">Número de mesa (opcional):</label>
+        <input type="number" id="mesa" name="mesa" min="1" placeholder="Ej. 5">
+      </div>
+
+      <!-- Sección de Platos -->
+      <h3>Platos</h3>
+      <div id="platosContainer"></div>
+      <button type="button" id="addPlato" class="add-button">Agregar Plato</button>
+      
+      <!-- Sección de Bebidas -->
+      <h3>Bebidas</h3>
+      <div id="bebidasContainer"></div>
+      <button type="button" id="addBebida" class="add-button">Agregar Bebida</button>
+      
+      <!-- Total -->
+      <div class="total-section">
+        <div class="total-amount">Total: $<span id="totalAmount">0.00</span></div>
+      </div>
+      
+      <hr>
+      
+      <!-- Observaciones generales -->
+      <div class="form-group">
+        <label for="observaciones">Observaciones generales:</label>
+        <textarea id="observaciones" name="observaciones" rows="3" placeholder="Ej: sin cebolla, muy caliente, para llevar..."></textarea>
+      </div>
+      
+      <button type="submit" class="submit-button">Finalizar Pedido</button>
+    </form>
+  </div>
+  
+  <script src="/js/pedido.js"></script>
+</body>
+</html>

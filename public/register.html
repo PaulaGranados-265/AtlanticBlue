@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Restaurante</title>
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Registro de Usuario</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <input type="text" id="id_usuario" placeholder="ID de usuario" required>
+            </div>
+            
+            <div class="form-group">
+                <input type="text" id="nombre_apellidos" placeholder="Nombre y apellidos" required>
+            </div>
+            
+            <div class="form-group">
+                <input type="text" id="telefono" placeholder="Teléfono" required>
+            </div>
+           
+            <div class="form-group">
+                <input type="email" id="correo" placeholder="Correo electrónico" required>
+            </div>
+            
+            <div class="form-group">
+                <input type="date" id="fecha_inicio" required>
+            </div>
+            
+            <div class="form-group">
+                <select id="rol" required>
+                    <option value="">Seleccionar rol</option>
+                    <option value="administrador">Administrador</option>
+                    <option value="mesero">Mesero</option>
+                </select>
+            </div>
+             <div class="form-group">
+                <input type="text" id="contraseña" placeholder="contraseña" required>
+            </div>
+            
+            <button type="submit" class="btn-submit">Registrar Usuario</button>
+        </form>
+    </div>
+    
+    <script src="/js/register.js"></script>
+</body>
+</html>

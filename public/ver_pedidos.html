@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pedidos Realizados</title>
+  <link rel="stylesheet" href="css/tabla.css">
+</head>
+<body>
+  <h2>Pedidos Realizados</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th># Pedido</th>
+        <th>Fecha</th>
+        <th>Mesa</th>
+        <th>Cliente</th>
+        <th>Observaciones</th>
+        <th>Registrado por</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="tablaPedidos">
+      <!-- Aquí se insertan los pedidos -->
+    </tbody>
+  </table>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = JSON.parse(localStorage.getItem('user'));
+
+      if (!user) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      fetch(`/pedidos?rol=${user.rol}&id_usuario=${user.id_usuario}`)
+        .then(res => res.json())
+        .then(data => {
+          const tbody = document.getElementById('tablaPedidos');
+          tbody.innerHTML = "";
+
+          data.forEach(pedido => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td>${pedido.id_pedido}</td>
+              <td>${new Date(pedido.fecha).toLocaleString()}</td>
+              <td>${pedido.mesa || '-'}</td>
+              <td>${pedido.cliente || '-'}</td>
+              <td>${pedido.observaciones || ''}</td>
+              <td>${pedido.mesero || '-'}</td>
+               <td>
+              <button onclick="editarPedido(${pedido.id_pedido})">✏️ Editar</button>
+               <button onclick="eliminarPedido(${pedido.id_pedido})">🗑️ Eliminar</button>
+               <button onclick="generarFactura(${pedido.id_pedido})">🧾 Factura</button>
+              </td>
+            `;
+            tbody.appendChild(tr);
+          });
+        });
+    });
+
+      function editarPedido(id) {
+    // Más adelante redirigiremos a un formulario
+    window.location.href = `editar_pedido.html?id=${id}`;
+  }
+
+  function eliminarPedido(id) {
+    if (confirm('¿Seguro que quieres eliminar este pedido?')) {
+      fetch(`/pedido/${id}`, {
+        method: 'DELETE'
+      })
+      .then(res => {
+        if (res.ok) {
+          alert('Pedido eliminado');
+          location.reload(); // recarga tabla
+        } else {
+          alert('Error al eliminar pedido');
+        }
+      })
+      .catch(err => {
+        console.error('Error:', err);
+        alert('Error al eliminar pedido');
+      });
+    }
+  }
+  function generarFactura(idPedido) {
+  if (!confirm('¿Deseas generar la factura para este pedido?')) return;
+   console.log('Generando factura para pedido:', idPedido);
+  fetch('/factura', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ id_pedido: idPedido })
+  })
+    .then(res => res.text())
+    .then(msg => {
+      alert(msg); // Muestra mensaje: "Factura generada correctamente"
+    })
+    .catch(err => {
+      console.error('Error al generar factura:', err);
+      alert('Error al generar la factura');
+    });
+}
+
+
+  </script>
+</body>
+</html>

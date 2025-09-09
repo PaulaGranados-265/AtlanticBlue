@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Principal - Atlantic Blue</title>
+    <link rel="stylesheet" href="css/panelstyle.css">
+</head>
+<body>
+    <div class="panel-contrainer">
+        <!-- Sección de Mi Perfil -->
+        <div class="profile-section">
+            <div class="profile-info">
+                <div class="profile-avatar">
+                    <img src="/placeholder.svg?height=50&width=50" alt="Avatar" id="userAvatar">
+                    <div class="status-indicator"></div>
+                </div>
+                <div class="profile-details">
+                    <h3 class="profile-name" id="userName">Juan Pérez</h3>
+                    <span class="profile-role" id="userRole">Administrador</span>
+                </div>
+            </div>
+            <div class="profile-actions">
+                <button class="profile-btn" id="profileBtn">
+                    <span>Mi Perfil</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </button>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <a href="#" class="dropdown-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        Ver Perfil
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 1v6m0 6v6"/>
+                        </svg>
+                        Configuración
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="login.html" class="dropdown-item logout">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                            <polyline points="16,17 21,12 16,7"/>
+                            <line x1="21" y1="12" x2="9" y2="12"/>
+                        </svg>
+                        Cerrar Sesión
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="panenel-header"></div>
+        
+        <div class="panel-grid">
+            <a href="menu.html" class="panel-item">
+                <img src="/placeholder.svg" alt="menu">
+                <span>Menú</span>
+            </a>
+            <a href="pedidos.html" class="panel-item">
+                <img src="/placeholder.svg" alt="pedidos">
+                <span>Pedidos</span>
+            </a>
+            <a href="reserva.html" class="panel-item">
+                <img src="/placeholder.svg" alt="reservas">
+                <span>Reservas</span>
+            </a>
+            <a href="clientes.html" class="panel-item">
+                <img src="/placeholder.svg" alt="clientes">
+                <span>Clientes</span>
+            </a>
+              <a href="ver_pedidos.html" class="panel-item">
+             <img src="/placeholder.svg" alt="lista pedidos">
+              <span>Ver Pedidos</span>
+  </a>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const userData = JSON.parse(localStorage.getItem('user'));
+
+        if (!userData) {
+            // Si no hay datos de sesión, redirige a login
+            window.location.href = 'login.html';
+            return;
+        }
+
+        document.getElementById('userName').textContent = userData.nombre_apellidos;
+        document.getElementById('userRole').textContent = userData.rol;
+        document.getElementById('userAvatar').src = "/placeholder.svg?height=50&width=50";
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de Cliente</title>
+  <link rel="stylesheet" href="css/clientes.css">
+</head>
+<body>
+  <div class="container">
+
+        <div class="action-buttons">
+      <button onclick="history.back()">Volver Atrás</button>
+      
+    </div>
+    <h2>Registro de Cliente</h2>
+    <form id="formCliente">
+      <div class="form-group">
+        <input type="text" id="nombre" placeholder="Nombre completo" required>
+      </div>
+      <div class="form-group">
+        <input type="text" id="celular" placeholder="Celular" required>
+      </div>
+      <div class="form-group">
+        <input type="email" id="correo" placeholder="Correo electrónico" required>
+      </div>
+      <button type="submit">Registrar Cliente</button>
+    </form>
+  </div>
+
+  <script src="/js/clientes.js"></script>
+</body>
+</html>
