@@ -1,470 +1,174 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Custom CSS para complementar Bootstrap */
+:root {
+  --primary-color: #0d6efd;
+  --secondary-color: #6c757d;
+  --success-color: #198754;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #0dcaf0;
 }
 
+/* Estilos generales */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #3b82f6 100%);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    position: relative;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
 }
 
-/* Efecto de cristal para el fondo */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: -1;
+/* Navbar personalizada */
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
-.container {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(15px);
-    border-radius: 24px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-    padding: 50px 40px;
-    width: 100%;
-    max-width: 480px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    position: relative;
-    overflow: hidden;
-    animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+/* Card personalizada */
+.card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
 }
 
-@keyframes slideInUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+.card-header {
+  border-bottom: none;
+  padding: 1.5rem;
 }
 
-/* Barra superior decorativa */
-.container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #3b82f6, #1d4ed8, #3b82f6);
-    background-size: 200% 100%;
-    animation: shimmer 3s ease-in-out infinite;
+.card-body {
+  padding: 2rem;
 }
 
-@keyframes shimmer {
-    0%, 100% { background-position: 200% 0; }
-    50% { background-position: -200% 0; }
+/* Formulario personalizado */
+.form-label {
+  font-weight: 600;
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
 }
 
-/* Icono decorativo */
-.container::after {
-    content: '👥';
-    position: absolute;
-    top: -20px;
-    right: 30px;
-    font-size: 40px;
-    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
-    animation: float 3s ease-in-out infinite;
+.form-control {
+  border-radius: 10px;
+  border: 2px solid #e9ecef;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
 }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+  transform: translateY(-2px);
 }
 
-h2 {
-    color: #1e40af;
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    position: relative;
+.form-control-lg {
+  font-size: 1rem;
+  padding: 1rem 1.25rem;
 }
 
-h2::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, #3b82f6, #1d4ed8);
-    border-radius: 2px;
+/* Botones personalizados */
+.btn {
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.form-group {
-    margin-bottom: 24px;
-    position: relative;
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.form-group::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #3b82f6, transparent);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 1px;
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
+  border: none;
 }
 
-.form-group:focus-within::before {
-    opacity: 1;
+.btn-outline-secondary {
+  border: 2px solid var(--secondary-color);
+  color: var(--secondary-color);
 }
 
-/* Iconos para cada campo */
-.form-group:nth-child(1)::after {
-    content: '👤';
-    position: absolute;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 18px;
-    z-index: 2;
-    pointer-events: none;
+.btn-outline-secondary:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 
-.form-group:nth-child(2)::after {
-    content: '📱';
-    position: absolute;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 18px;
-    z-index: 2;
-    pointer-events: none;
+/* Iconos */
+.bi {
+  font-size: 1rem;
 }
 
-.form-group:nth-child(3)::after {
-    content: '📧';
-    position: absolute;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 18px;
-    z-index: 2;
-    pointer-events: none;
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  .navbar-brand {
+    font-size: 1rem;
+  }
+
+  .form-control-lg {
+    font-size: 0.9rem;
+    padding: 0.875rem 1rem;
+  }
 }
 
-input[type="text"],
-input[type="email"] {
-    width: 100%;
-    padding: 18px 20px;
-    padding-left: 50px;
-    border: 2px solid #e2e8f0;
-    border-radius: 16px;
-    font-size: 16px;
-    background: #f8fafc;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    color: #334155;
-    font-weight: 500;
+@media (max-width: 768px) {
+  .card-header h4 {
+    font-size: 1.1rem;
+  }
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus {
-    outline: none;
-    border-color: #3b82f6;
-    background: #ffffff;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-    transform: translateY(-2px);
-}
-
-input::placeholder {
-    color: #94a3b8;
-    font-weight: 400;
-}
-
-/* Estados de validación */
-input:valid {
-    border-color: #10b981;
-}
-
-input:valid + .validation-icon::before {
-    content: '✓';
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #10b981;
-    font-weight: bold;
-}
-
-input:invalid:not(:placeholder-shown) {
-    border-color: #ef4444;
-}
-
-input:invalid:not(:placeholder-shown) + .validation-icon::before {
-    content: '✗';
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #ef4444;
-    font-weight: bold;
-}
-
-/* Botón de envío */
-button[type="submit"] {
-    width: 100%;
-    padding: 18px;
-    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-    color: white;
-    border: none;
-    border-radius: 16px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    margin-top: 16px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    position: relative;
-    overflow: hidden;
-}
-
-button[type="submit"]::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
-}
-
-button[type="submit"]:hover {
-    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
-}
-
-button[type="submit"]:hover::before {
-    left: 100%;
-}
-
-button[type="submit"]:active {
-    transform: translateY(-1px);
-}
-
-/* Estado de carga del botón */
-button[type="submit"].loading {
-    pointer-events: none;
-    opacity: 0.8;
-}
-
-button[type="submit"].loading::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 2px solid transparent;
-    border-top: 2px solid white;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-@keyframes spin {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* Mensaje de éxito */
-.success-message {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    color: white;
-    padding: 16px 20px;
-    border-radius: 12px;
-    margin-top: 20px;
-    text-align: center;
-    font-weight: 600;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.3s ease;
-}
-
-.success-message.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.success-message::before {
-    content: '✓';
-    margin-right: 8px;
-    font-size: 18px;
-}
-
-/* Mensaje de error */
-.error-message {
-    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-    color: white;
-    padding: 16px 20px;
-    border-radius: 12px;
-    margin-top: 20px;
-    text-align: center;
-    font-weight: 600;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.3s ease;
-}
-
-.error-message.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.error-message::before {
-    content: '⚠';
-    margin-right: 8px;
-    font-size: 18px;
-}
-
-/* Efectos adicionales */
-.form-group::after {
-    transition: all 0.3s ease;
-}
-
-.form-group:focus-within::after {
-    transform: translateY(-50%) scale(1.1);
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-    .container {
-        padding: 40px 24px;
-        margin: 16px;
-        border-radius: 20px;
-        max-width: none;
-    }
-    
-    .container::after {
-        top: -15px;
-        right: 20px;
-        width: 60px;
-        height: 60px;
-        font-size: 32px;
-    }
-    
-    h2 {
-        font-size: 28px;
-        margin-bottom: 32px;
-    }
-    
-    input[type="text"],
-    input[type="email"] {
-        padding: 16px 18px;
-        padding-left: 45px;
-        font-size: 14px;
-    }
-    
-    button[type="submit"] {
-        padding: 16px;
-        font-size: 14px;
-    }
-    
-    .form-group:nth-child(1)::after,
-    .form-group:nth-child(2)::after,
-    .form-group:nth-child(3)::after {
-        left: 14px;
-        font-size: 16px;
-    }
-}
-
-/* Animación de entrada para los campos */
-.form-group {
-    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
-}
-
-.form-group:nth-child(1) { animation-delay: 0.1s; }
-.form-group:nth-child(2) { animation-delay: 0.2s; }
-.form-group:nth-child(3) { animation-delay: 0.3s; }
-
-button[type="submit"] {
-    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
-    animation-delay: 0.4s;
+/* Animaciones suaves */
+.card {
+  animation: fadeInUp 0.6s ease-out;
 }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Efecto de partículas en hover del contenedor */
-.container:hover::before {
-    animation-duration: 2s;
+/* Estados de validación */
+.form-control.is-valid {
+  border-color: var(--success-color);
 }
 
-/* Mejoras de accesibilidad */
-input:focus {
-    outline: 2px solid transparent;
-    outline-offset: 2px;
+.form-control.is-invalid {
+  border-color: var(--danger-color);
 }
 
-button:focus {
-    outline: 2px solid transparent;
-    outline-offset: 2px;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+/* Loading state para el botón */
+.btn-loading {
+  position: relative;
+  color: transparent;
 }
 
-/* Estados adicionales para mejor UX */
-.form-group.has-error input {
-    border-color: #ef4444;
-    background: rgba(239, 68, 68, 0.05);
+.btn-loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
 }
 
-.form-group.has-success input {
-    border-color: #10b981;
-    background: rgba(16, 185, 129, 0.05);
-}
-
-/* Tooltip de ayuda */
-.form-group[data-tooltip]:hover::before {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #1f2937;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 12px;
-    white-space: nowrap;
-    z-index: 1000;
-    margin-bottom: 5px;
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

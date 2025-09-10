@@ -2,38 +2,118 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Reservas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservas - Atlantic Blue</title>
+  <!-- Added Bootstrap 5 CDN and custom CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="css/reservas.css">
 </head>
-<body>
-  <div class="container">
-    <h2>Hacer una Reserva</h2>
-    <form id="formReserva">
-      <input type="text" id="responsable" list="listaClientes" placeholder="Nombre del responsable" required>
-      <datalist id="listaClientes"></datalist>
+<body class="bg-light">
+  <!-- Added Bootstrap navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">
+        <i class="bi bi-calendar-check me-2"></i>Atlantic Blue - Reservas
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="panel.html">
+              <i class="bi bi-house-door me-1"></i>Dashboard
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-      <input type="date" id="fecha_reserva" required>
-      <input type="number" id="cantidad_personas" placeholder="Cantidad de personas" required>
-      <button type="submit">Registrar Reserva</button>
-    </form>
+  <!-- Wrapped content in Bootstrap container with responsive layout -->
+  <div class="container my-4">
+    <div class="row">
+      <!-- Formulario de Reservas -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0">
+              <i class="bi bi-plus-circle me-2"></i>Nueva Reserva
+            </h5>
+          </div>
+          <div class="card-body">
+            <!-- Applied Bootstrap form classes -->
+            <form id="formReserva">
+              <div class="mb-3">
+                <label for="responsable" class="form-label">Responsable</label>
+                <input type="text" 
+                       class="form-control" 
+                       id="responsable" 
+                       list="listaClientes" 
+                       placeholder="Nombre del responsable" 
+                       required>
+                <datalist id="listaClientes"></datalist>
+              </div>
 
-    <hr>
+              <div class="mb-3">
+                <label for="fecha_reserva" class="form-label">Fecha de Reserva</label>
+                <input type="date" 
+                       class="form-control" 
+                       id="fecha_reserva" 
+                       required>
+              </div>
 
-    <h2>Reservas Registradas</h2>
-    <table border="1" id="tablaReservas">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Responsable</th>
-          <th>Fecha</th>
-          <th>Cantidad</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+              <div class="mb-3">
+                <label for="cantidad_personas" class="form-label">Cantidad de Personas</label>
+                <input type="number" 
+                       class="form-control" 
+                       id="cantidad_personas" 
+                       placeholder="Número de personas" 
+                       min="1" 
+                       required>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100">
+                <i class="bi bi-check-circle me-2"></i>Registrar Reserva
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabla de Reservas -->
+      <div class="col-lg-8 col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-header bg-success text-white">
+            <h5 class="card-title mb-0">
+              <i class="bi bi-list-ul me-2"></i>Reservas Registradas
+            </h5>
+          </div>
+          <div class="card-body p-0">
+            <!-- Made table responsive with Bootstrap classes -->
+            <div class="table-responsive">
+              <table class="table table-hover mb-0" id="tablaReservas">
+                <thead class="table-dark">
+                  <tr>
+                    <th>ID</th>
+                    <th>Responsable</th>
+                    <th>Fecha</th>
+                    <th>Personas</th>
+                    <th class="text-center">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <script src="/js/reserva.js"></script>
+  <!-- Added Bootstrap JS and updated script path -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/reserva.js"></script>
 </body>
 </html>

@@ -2,31 +2,87 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro de Cliente</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="css/clientes.css">
 </head>
-<body>
-  <div class="container">
-
-        <div class="action-buttons">
-      <button onclick="history.back()">Volver Atrás</button>
-      
+<body class="bg-light">
+  <!-- Added Bootstrap navbar and responsive container -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <span class="navbar-brand mb-0 h1">
+        <i class="bi bi-person-plus-fill me-2"></i>
+        Atlantic Blue - Registro de Cliente
+      </span>
     </div>
-    <h2>Registro de Cliente</h2>
-    <form id="formCliente">
-      <div class="form-group">
-        <input type="text" id="nombre" placeholder="Nombre completo" required>
+  </nav>
+
+  <div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-6">
+        <!-- Added Bootstrap card for better presentation -->
+        <div class="card shadow">
+          <div class="card-header bg-primary text-white">
+            <h4 class="card-title mb-0">
+              <i class="bi bi-person-plus me-2"></i>
+              Nuevo Cliente
+            </h4>
+          </div>
+          <div class="card-body">
+            <!-- Updated button with Bootstrap classes and better positioning -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <button class="btn btn-outline-secondary btn-sm" onclick="history.back()">
+                <i class="bi bi-arrow-left me-1"></i>
+                Volver Atrás
+              </button>
+            </div>
+
+            <!-- Applied Bootstrap form classes for responsiveness -->
+            <form id="formCliente">
+              <div class="mb-3">
+                <label for="nombre" class="form-label">
+                  <i class="bi bi-person me-1"></i>
+                  Nombre Completo
+                </label>
+                <input type="text" class="form-control form-control-lg" id="nombre" placeholder="Ingrese el nombre completo" required>
+              </div>
+              
+              <div class="mb-3">
+                <label for="celular" class="form-label">
+                  <i class="bi bi-phone me-1"></i>
+                  Número de Celular
+                </label>
+                <input type="tel" class="form-control form-control-lg" id="celular" placeholder="Ingrese el número de celular" required>
+              </div>
+              
+              <div class="mb-4">
+                <label for="correo" class="form-label">
+                  <i class="bi bi-envelope me-1"></i>
+                  Correo Electrónico
+                </label>
+                <input type="email" class="form-control form-control-lg" id="correo" placeholder="Ingrese el correo electrónico" required>
+              </div>
+              
+              <!-- Enhanced submit button with Bootstrap styling -->
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">
+                  <i class="bi bi-check-circle me-2"></i>
+                  Registrar Cliente
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <input type="text" id="celular" placeholder="Celular" required>
-      </div>
-      <div class="form-group">
-        <input type="email" id="correo" placeholder="Correo electrónico" required>
-      </div>
-      <button type="submit">Registrar Cliente</button>
-    </form>
+    </div>
   </div>
 
-  <script src="/js/clientes.js"></script>
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/clientes.js"></script>
 </body>
 </html>
